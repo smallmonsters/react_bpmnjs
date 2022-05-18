@@ -12,7 +12,7 @@ bpmn.js是一个BPMN2.0渲染工具包和web建模器.
 
 首先，我们先来看看整体结构
 
-![](https://github.com/griabcrh/react_bpmnjs/blob/smallmonsters/static/modeler1.png)
+![](https://github.com/smallmonsters/react_bpmnjs/blob/smallmonsters/static/modeler1.png)
 
 记住上面图中的文字
 
@@ -20,7 +20,7 @@ bpmn.js是一个BPMN2.0渲染工具包和web建模器.
 
 首先先看一下目录结构
 
-![](https://github.com/griabcrh/react_bpmnjs/blob/smallmonsters/static/modeler2.png)
+![](https://github.com/smallmonsters/react_bpmnjs/blob/smallmonsters/static/modeler2.png)
 
 在CustomPalette.js文件中实现左侧工具栏，默认bpmn-js的工具栏有很多节点，但一些节点不是我们需要的；所以这里自定义。
 
@@ -125,7 +125,7 @@ getPaletteEntries(element) {
 
 比如说我添加一个服务任务节点
 
-![](https://github.com/griabcrh/react_bpmnjs/blob/smallmonsters/static/modeler3.png)
+![](https://github.com/smallmonsters/react_bpmnjs/blob/smallmonsters/static/modeler3.png)
 
 只需要在CustomPalette.js文件中添加红框中的代码就可以了
 
@@ -272,11 +272,11 @@ contextPadProvider表示完全自定义
 
 因为bpmn.js是国外的，所以我们国内用需要翻译成中文，方法和palette一样，新建CustomTranslate.js文件；具体结合项目查看
 
-![](https://github.com/griabcrh/react_bpmnjs/blob/smallmonsters/static/modeler4.png)
+![](https://github.com/smallmonsters/react_bpmnjs/blob/smallmonsters/static/modeler4.png)
 
 最后将上面三个自定义都引入index.js文件
 
-![](https://github.com/griabcrh/react_bpmnjs/blob/smallmonsters/static/modeler5.png)
+![](https://github.com/smallmonsters/react_bpmnjs/blob/smallmonsters/static/modeler5.png)
 
 使用：
 
@@ -342,7 +342,7 @@ this.bpmnModeler = new BpmnModeler({
 
 官方的属性面板不好控制，于是我自定义了属性面板(将camunda的属性面板源码拿过来改的)。
 
-![](https://github.com/griabcrh/react_bpmnjs/blob/smallmonsters/static/modeler6.png)
+![](https://github.com/smallmonsters/react_bpmnjs/blob/smallmonsters/static/modeler6.png)
 
 在`FlowablePropertiesProvider.js`文件中，添加我们需要的属性，比如：**必经节点**
 
