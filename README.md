@@ -8,27 +8,19 @@ bpmn.js是一个BPMN2.0渲染工具包和web建模器.
 
 在线测试: [在线绘制bpmn流程图](https://demo.bpmn.io/)
 
-
-
 ## 2. 实现流程设计器
 
 首先，我们先来看看整体结构
 
-![](https://github.com/griabcrh/react_bpmnjs/blob/master/static/modeler1.png)
-
-
+![](https://github.com/griabcrh/react_bpmnjs/blob/smallmonsters/static/modeler1.png)
 
 记住上面图中的文字
-
-
 
 ### 2.1 自定义左侧工具栏（pallete）
 
 首先先看一下目录结构
 
-![](https://github.com/griabcrh/react_bpmnjs/blob/master/static/modeler2.png)
-
-
+![](https://github.com/griabcrh/react_bpmnjs/blob/smallmonsters/static/modeler2.png)
 
 在CustomPalette.js文件中实现左侧工具栏，默认bpmn-js的工具栏有很多节点，但一些节点不是我们需要的；所以这里自定义。
 
@@ -59,8 +51,6 @@ CustomPalette.$inject = [
     'translate'
 ]
 ```
-
-
 
 上面👆的代码很好理解:
 
@@ -101,8 +91,6 @@ this.bpmnModeler = new BpmnModeler({
 </script>
 ```
 
-
-
 #### 编写核心函数getPaletteEntries代码
 
 抛开这些不看, 重点就是如何构造这个`getPaletteEntries`函数
@@ -133,13 +121,11 @@ getPaletteEntries(element) {
 - title: 鼠标移动到元素上面给出的提示信息
 - action: 用户操作时会触发的事件
 
-
-
 > Q: 在这个项目中我们如何添加新的节点？
 
 比如说我添加一个服务任务节点
 
-![](https://github.com/griabcrh/react_bpmnjs/blob/master/static/modeler3.png)
+![](https://github.com/griabcrh/react_bpmnjs/blob/smallmonsters/static/modeler3.png)
 
 只需要在CustomPalette.js文件中添加红框中的代码就可以了
 
@@ -156,11 +142,7 @@ export default {
 };
 ```
 
-
-
 可能你注意到了\__init__里用的是paletteProvider，这表示的是完全自定义；如果使用customPalette表示的在原来的基础上扩展。
-
-
 
 ### 2.2 自定义Context-Pad
 
@@ -256,26 +238,22 @@ getContextPadEntries(element) {
 
         return {
             'append.user-task': {
-             	group: 'model',
-             	className: 'bpmn-icon-user-task',
-             	title: translate('Append')+' '+translate('UserTask'),
-             	action: {
-                	click: appendUserTask,
-                 	dragstart: appendUserTaskStart
-             	}
-         	},
+              group: 'model',
+              className: 'bpmn-icon-user-task',
+              title: translate('Append')+' '+translate('UserTask'),
+              action: {
+                 click: appendUserTask,
+                  dragstart: appendUserTaskStart
+              }
+          },
         };
     }
 }
 ```
 
-
-
 > Q: 如何创建一个新的节点呢？
 
 复制return中的user-task对象然后将对应值改成你想要的就可以了
-
-
 
 最后同样的操作：导出
 
@@ -288,27 +266,17 @@ export default {
 };
 ```
 
-
-
 contextPadProvider表示完全自定义
-
-
 
 ### 2.3 自定义翻译
 
 因为bpmn.js是国外的，所以我们国内用需要翻译成中文，方法和palette一样，新建CustomTranslate.js文件；具体结合项目查看
 
-![](https://github.com/griabcrh/react_bpmnjs/blob/master/static/modeler4.png)
-
-
-
-
+![](https://github.com/griabcrh/react_bpmnjs/blob/smallmonsters/static/modeler4.png)
 
 最后将上面三个自定义都引入index.js文件
 
-![](https://github.com/griabcrh/react_bpmnjs/blob/master/static/modeler5.png)
-
-
+![](https://github.com/griabcrh/react_bpmnjs/blob/smallmonsters/static/modeler5.png)
 
 使用：
 
@@ -323,20 +291,14 @@ this.bpmnModeler = new BpmnModeler({
 });
 ```
 
-
-
-
-
 ### 2.4 自定义属性面板（properties-panel）
-
-
 
 首先是安装上.
 
 如果你想要使用它的话, 得自己安装一下:
 
 ```
-$ npm install --save bpmn-js-properties-panel
+npm install --save bpmn-js-properties-panel
 ```
 
 同样的记得在项目中引入样式:
@@ -376,17 +338,11 @@ this.bpmnModeler = new BpmnModeler({
  });
 ```
 
-
-
 这个是官方的属性面板，如果要添加自定义的属性怎么办呢？
-
-
 
 官方的属性面板不好控制，于是我自定义了属性面板(将camunda的属性面板源码拿过来改的)。
 
-![](https://github.com/griabcrh/react_bpmnjs/blob/master/static/modeler6.png)
-
-
+![](https://github.com/griabcrh/react_bpmnjs/blob/smallmonsters/static/modeler6.png)
 
 在`FlowablePropertiesProvider.js`文件中，添加我们需要的属性，比如：**必经节点**
 
@@ -405,8 +361,6 @@ var isMajorProps = require('./parts/IsMajorProps');
 // generalGroup是一个数组，主要用于传值
 // 其他的不用管，自带的
 ```
-
-
 
 我们来看看`IsMajorProps`这个文件内容：
 
@@ -441,8 +395,6 @@ module.exports = function(group, element, bpmnFactory, translate) {
 
 ```
 
-
-
 其实就是将一个对象添加到`generalGroup`数组中。我们提出重要部分进行讲解
 
 ```js
@@ -459,16 +411,12 @@ const isMajor = entryFactory.selectBox({
 
 ```
 
-
-
 - `selectBox` 表示的是下拉框，还有输入框等，你可以进入entryFactory中查看
 - `id`表示的是dom唯一标识，和普通的html中的id作用一样
 - `label`相信你看名字就知道了，输入的是属性中文描述
 - `modelProperty`这个是真正插入xml中的属性
 - `selectOptions`就是下拉框中的值
 - `translate`表示的是翻译，你也可以直接输入中文，输入因为的话，会到上文中说的翻译文件中去查
-
-
 
 我们再找一个输入框的看看:
 
@@ -482,13 +430,7 @@ var versionTagEntry = entryFactory.textField({
 
 - `entryFactory.textField`表示的是输入框
 
-  
-
-
-
 #### 怎么将自定义的属性面板和BpmnModeler结合
-
-
 
 只需要在使用时，引入本地自定义的就可以啦🤔️
 
@@ -516,21 +458,13 @@ this.bpmnModeler = new BpmnModeler({
 });
 ```
 
-
-
-
-
 ## 3. 属性面板拓展功能
 
 ### 3.1 拓展下拉选择框可以多选
 
 **查看案例**：`受理人`
 
-
-
 ![](https://github.com/griabcrh/react_bpmnjs/blob/master/static/assigneeList.png)
-
-
 
 ```js
 entryFactory.selectBox({
@@ -554,11 +488,7 @@ entryFactory.selectBox({
 }),
 ```
 
-
-
 只需要加上`multiple`属性即可
-
-
 
 ### 3.2 异步请求
 
@@ -618,17 +548,11 @@ module.exports = function(group, element, bpmnFactory, translate) {
 };
 ```
 
-
-
 代码中，通过`getData`获取下拉框的数据，`getData`通过`Promise`将异步请求转为同步请求，你可以亲自运行项目查看`console`输出顺序。
-
-
 
 ### 3.3 时间相关组件
 
 ![](https://github.com/griabcrh/react_bpmnjs/blob/master/static/time.png)
-
-
 
 查看案例如图
 
@@ -654,11 +578,7 @@ group.entries.push(entryFactory.dateField({
   }));
 ```
 
-
-
 通过`entryFactory.dateField`创建就可以啦
-
-
 
 **(2) 小时、分钟这种组件调用方式**
 
@@ -730,17 +650,11 @@ const node = entryFactory.timeField({
   group.entries.push(node);
 ```
 
-
-
 通过`entryFactory.timeField`创建就可以啦
-
-
 
 ## 4. 流程校验
 
 请移步这里：[基于bpmn-js的流程设计器校验实现](https://github.com/griabcrh/bpmn-js-bpmnlint)
-
-
 
 ## 5 支持
 
@@ -748,7 +662,4 @@ const node = entryFactory.timeField({
 
 如果本文让你少花了一个星期的时间去研究bpmn-js，请给作者小姐姐一束花：
 
-
-
 ![](https://github.com/griabcrh/react_bpmnjs/blob/master/static/zanshang.jpg)
-
