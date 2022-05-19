@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react';
 import { notification } from 'antd';
 import FullModal from '@/widgets/FullModal';
+// Bpmn 相关文件
 // 这里引入的是右侧属性栏这个框
 import propertiesPanelModule from './bpmn-js-properties-panel/lib';
-import propertiesProviderModule from './bpmn-js-properties-panel/lib/provider/flowable';
 // 引入flowable的节点文件
 import flowableModdle from '../static/flowModel/flowable.json';
-
 // 而这个引入的是右侧属性栏里的内容
+import propertiesProviderModule from './bpmn-js-properties-panel/lib/provider/flowable';
 import EditingTools from './BpmnEditor/EditingTools';
 import BpmnModeler from './BpmnEditor/Modeler';
 import 'bpmn-js/dist/assets/diagram-js.css';
@@ -63,10 +63,10 @@ class ProcessDesign extends PureComponent {
 
     window.bpmnModeler = this.bpmnModeler;
     // 删除 bpmn logo  bpmn.io官方要求不给删或者隐藏，否则侵权
-    const bjsIoLogo = document.querySelector('.bjs-powered-by');
-    while (bjsIoLogo.firstChild) {
-      bjsIoLogo.removeChild(bjsIoLogo.firstChild);
-    }
+    // const bjsIoLogo = document.querySelector('.bjs-powered-by');
+    // while (bjsIoLogo.firstChild) {
+    //     bjsIoLogo.removeChild(bjsIoLogo.firstChild);
+    // }
   }
 
   // 流程校验使用

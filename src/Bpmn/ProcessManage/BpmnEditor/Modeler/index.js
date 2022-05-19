@@ -1,6 +1,6 @@
 import Modeler from 'bpmn-js/lib/Modeler';
 
-import {assign, isArray} from 'min-dash';
+import { assign, isArray } from 'min-dash';
 
 import inherits from 'inherits';
 
@@ -31,27 +31,27 @@ CustomModeler.prototype._modules = [].concat(CustomModeler.prototype._modules, [
  *
  * @param {Object} customElement
  */
-CustomModeler.prototype.addCustomShape = function(customElement) {
+CustomModeler.prototype.addCustomShape = function (customElement) {
     this.customElements.push(customElement);
 
     const canvas = this.get('canvas');
     const elementFactory = this.get('elementFactory');
 
-    const customAttrs = assign({businessObject: customElement}, customElement);
+    const customAttrs = assign({ businessObject: customElement }, customElement);
 
     const customShape = elementFactory.create('shape', customAttrs);
 
     return canvas.addShape(customShape);
 };
 
-CustomModeler.prototype.addCustomConnection = function(customElement) {
+CustomModeler.prototype.addCustomConnection = function (customElement) {
     this.customElements.push(customElement);
 
     const canvas = this.get('canvas');
     const elementFactory = this.get('elementFactory');
     const elementRegistry = this.get('elementRegistry');
 
-    const customAttrs = assign({businessObject: customElement}, customElement);
+    const customAttrs = assign({ businessObject: customElement }, customElement);
 
     const connection = elementFactory.create(
         'connection',
@@ -70,7 +70,7 @@ CustomModeler.prototype.addCustomConnection = function(customElement) {
  *
  * @param {Array<Object>} customElements
  */
-CustomModeler.prototype.addCustomElements = function(customElements) {
+CustomModeler.prototype.addCustomElements = function (customElements) {
     if (!isArray(customElements)) {
         throw new Error('argument must be an array');
     }
@@ -98,7 +98,7 @@ CustomModeler.prototype.addCustomElements = function(customElements) {
  *
  * @return {Array<Object>} custom elements on the diagram
  */
-CustomModeler.prototype.getCustomElements = function() {
+CustomModeler.prototype.getCustomElements = function () {
     return this.customElements;
 };
 

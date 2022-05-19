@@ -9,15 +9,14 @@ export async function validateProcess() {
   var linter = new Linter(bpmnlintConfig);
   const results = linter.lint(modelRoot.businessObject);
   await results.then(res => {
-    for(let items of Object.values(res)) {
+    for (let items of Object.values(res)) {
       items.forEach(it => {
-        if(it.category === 'error') {
+        if (it.category === 'error') {
           result = false;
           message[it.category](it.message);
         } else {
           message[it.category](it.message)
         }
-        
       });
     }
   });
@@ -32,18 +31,18 @@ export function validateRequired() {
   const rootElement = canvas.getRootElement();
   const childs = rootElement.children;
   childs.forEach(child => {
-    if(child.type === 'bpmn:UserTask') {
+    if (child.type === 'bpmn:UserTask') {
       // 判断用户任务必输项
       const bo = child.businessObject;
-      if(!bo.get('normal:nodeType')) {
+      if (!bo.get('normal:nodeType')) {
         results.push(`用户任务${bo.name}：节点类型属性为必输项`);
         flag = false;
       }
-      if(!bo.get('normal:type')) {
+      if (!bo.get('normal:type')) {
         results.push(`用户任务${bo.name}：审批方式属性为必输项`);
         flag = false;
       }
-      if(bo.get('assignee:assigneeList') && !bo.get('assignee:assign')) {
+      if (bo.get('assignee:assigneeList') && !bo.get('assignee:assign')) {
         results.push(`用户任务${bo.name}：配置了执行人，必须选择执行人分配策略`);
         flag = false;
       }
@@ -51,5 +50,5 @@ export function validateRequired() {
     }
   });
 
-  return {flag: flag, results: results};
+  return { flag: flag, results: results };
 }
