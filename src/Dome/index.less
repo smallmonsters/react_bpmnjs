@@ -1,0 +1,24 @@
+.container {
+  position: relative;
+  flex: auto;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-size: 12px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  background: #fff;
+  border: 1px solid #ddd;
+  :global(#properties-panel) {
+    position: absolute;
+    width: 320px;
+    height: 100%;
+    overflow: scroll;
+    right: 0;
+  }
+  .canvas {
+    width: calc(100% - 320px);
+    height: 100%;
+  }
+}
